@@ -14,7 +14,9 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.red.shade900,
           title: Text('Roll the Dice'),
         ),
-        body: RollDice(),
+        body: SafeArea(
+          child: RollDice(),
+        ),
       ),
     );
   }
@@ -23,6 +25,22 @@ class MyApp extends StatelessWidget {
 class RollDice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+              child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Image.asset('images/dice1.png'),
+          )),
+          Expanded(
+              child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Image.asset('images/dice2.png'),
+          )),
+        ],
+      ),
+    );
   }
 }
