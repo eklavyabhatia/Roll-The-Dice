@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,9 +24,18 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class RollDice extends StatelessWidget {
+class RollDice extends StatefulWidget {
+  @override
+  _RollDiceState createState() => _RollDiceState();
+}
+
+class _RollDiceState extends State<RollDice> {
+  int leftDiceValue = 1;
+  int rightDiceValue = 1;
+
   @override
   Widget build(BuildContext context) {
+    Random random = new Random();
     return Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -32,17 +43,21 @@ class RollDice extends StatelessWidget {
           Expanded(
             child: FlatButton(
               onPressed: () {
-                print('Left Button Pressed');
+                setState(() {
+                  leftDiceValue = random.nextInt(6) + 1;
+                });
               },
-              child: Image.asset('images/dice1.png'),
+              child: Image.asset('images/dice$leftDiceValue.png'),
             ),
           ),
           Expanded(
             child: FlatButton(
               onPressed: () {
-                print('Right Button Pressed');
+                setState(() {
+                  rightDiceValue = random.nextInt(6) + 1;
+                });
               },
-              child: Image.asset('images/dice2.png'),
+              child: Image.asset('images/dice$rightDiceValue.png'),
             ),
           ),
         ],
